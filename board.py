@@ -1,4 +1,6 @@
 from cell import Cell
+from sudoku_generator import SudokuGenerator
+import pygame
 
 #This class represents an entire Sudoku board. A Board object has 81 Cell objects
 class Board:
@@ -8,11 +10,23 @@ class Board:
         self.screen = screen
         self.difficulty = difficulty
 
+        if difficulty == "easy":
+            removed_cells = 30
+        elif difficulty == "medium":
+            removed_cells = 40
+        elif difficulty == "hard":
+            removed_cells = 50
+
+        self.sudoku_generator = SudokuGenerator(9, removed_cells)
+        self.sudoku_generator.fill_values()
+        self.sudoku_generator.remove_cells()
+        board = self.sudoku_generator.get_board()
+
         self.cells = [] #9x9 grid of cells.
         for row in range(9):
             row_cells = []
             for col in range(9):
-                cell = Cell(0, row, col, screen)
+                cell = Cell(board[row][col], row, col, screen)
                 row_cells.append(cell)
             self.cells.append(row_cells)
 
