@@ -47,10 +47,10 @@ def main():
                         if difficulty:
                             board = Board(540, 540, screen, difficulty)
                             running = False
+            pygame.display.flip()
+            clock.tick(60)
 
-        pygame.display.flip()
-        clock.tick(60)
-
+        running = True
         #Game loop for Sudoku
         while running and board:
             screen.fill((255,255,255)) #White background
