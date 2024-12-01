@@ -17,7 +17,7 @@ class Cell:
         self.sketched_value = value
 
     def draw(self, selected=False):
-        cell_size = 20 
+        cell_size = 20
         x = self.col * cell_size
         y = self.row * cell_size
 
@@ -28,10 +28,9 @@ class Cell:
         font = pygame.font.SysFont("arial", 32)
         if self.value != 0: #Display value if available
             value_text = font.render(str(self.value), True, (0,0,0))
-            self.screen.blit(value_text, x+10, y+10) #Middle of cell
+            self.screen.blit(value_text, (x+10, y+10)) #Middle of cell
         elif self.sketched_value != 0: #Display sketched value if available
             sketched_value_text = font.render(str(self.sketched_value), True, (0,0,0))
-            self.screen.blit(sketched_value_text, x, y) #Top left of cell
-
+            self.screen.blit(sketched_value_text, (x, y)) #Top left of cell
 
 
