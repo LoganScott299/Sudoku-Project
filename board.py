@@ -79,3 +79,13 @@ class Board:
         for row in self.cells:
             for cell in row:
                 cell.set_cell_value(cell.sketched_value)
+
+    def check_board(self):
+        for row in range(9):
+            for col in range (9):
+                value = self.cells[row][col].value
+                if value != 0:
+                    if not self.sudoku_generator.is_valid(row, col, value):
+                        return False
+        return True
+
