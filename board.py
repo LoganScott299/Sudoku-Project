@@ -36,3 +36,11 @@ class Board:
             if col >= 0 and col < 9:
                 return row, col
         return None #Return None if the click is outside the board
+
+    def clear(self):
+        if self.selected_cell:
+            self.selected_cell.set_cell_value(0)
+
+    def sketch(self, value):
+        if self.selected_cell:
+            self.selected_cell.set_cell_value(value)
