@@ -47,3 +47,14 @@ class Board:
                 row_cells.append(cell)
             self.cells.append(row_cells)
 
+    def draw(self): #Draw each of the cells in the 9x9 grid
+        for row in range(9):
+            for col in range(9):
+                self.cells[row][col].draw()
+
+        for x in [3,6,9]: #Draw thick lines to separate the 3x3 boxes
+            pygame.draw.line(self.screen, (0,0,0), (x * self.width // 9, 0), (x * self.width // 9, self.height), 3)
+            pygame.draw.line(self.screen, (0, 0, 0), (x * self.height // 9, 0), (self.height, x * self.width // 9), 3)
+
+
+
