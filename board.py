@@ -48,3 +48,20 @@ class Board:
     def place_number(self, value):
         if self.selected_cell:
             self.selected_cell.set_cell_value(value)
+
+    def reset_to_original(self): #Reset board to original state
+        for row in self.cells:
+            for cell in row:
+                cell.value = cell.original_value
+
+    def is_full(self): #Check if board completed
+        for row in self.cells:
+            for cell in row:
+                if cell.value == 0:
+                    return False
+        return True
+
+    def update_board(self): #Finalize sketches
+        for row in self.cells:
+            for cell in row:
+                cell.set_cell_value(cell.sketched_value)
