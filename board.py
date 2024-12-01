@@ -35,9 +35,9 @@ class Board:
             for col in range(9):
                 self.cells[row][col].draw()
 
-        for x in [3,6,9]: #Draw thick lines to separate the 3x3 boxes
-            pygame.draw.line(self.screen, (0,0,0), (x * self.width // 9, 0), (x * self.width // 9, self.height), 3)
-            pygame.draw.line(self.screen, (0, 0, 0), (x * self.height // 9, 0), (self.height, x * self.width // 9), 3)
+        for x in [3, 6]:  # Only need lines at the 3rd and 6th positions
+            pygame.draw.line(self.screen, (0, 0, 0), (x * self.width // 9, 0), (x * self.width // 9, self.height),3)  # Vertical lines
+            pygame.draw.line(self.screen, (0, 0, 0), (0, x * self.height // 9), (self.width, x * self.height // 9),3)  # Horizontal lines
 
     def select(self, row, col): #
         self.selected_cell = self.cells[row][col]
