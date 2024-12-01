@@ -48,7 +48,8 @@ class Board:
 
         if row >= 0 and row < 9: #Check if the click is in the board's boundaries
             if col >= 0 and col < 9:
-                return row, col
+                if self.cells[row][col].value == 0:
+                    return row, col
         return None #Return None if the click is outside the board
 
     def clear(self):
