@@ -56,5 +56,18 @@ class Board:
             pygame.draw.line(self.screen, (0,0,0), (x * self.width // 9, 0), (x * self.width // 9, self.height), 3)
             pygame.draw.line(self.screen, (0, 0, 0), (x * self.height // 9, 0), (self.height, x * self.width // 9), 3)
 
+    def select(self, row, col): #
+        self.selected_cell = self.cells[row][col]
+
+    def click(self, x, y):
+        row = y // (self.height // 9)
+        col = x // (self.width // 9)
+
+        if row >= 0 and row < 9: #Check if the click is in the board's boundaries
+            if col >= 0 and col < 9:
+                return row, col
+        return None #Return None if the click is outside the board
+
+
 
 
