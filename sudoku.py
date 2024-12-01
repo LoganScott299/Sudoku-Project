@@ -63,7 +63,7 @@ def main():
                     x, y = event.pos
                     selected = board.click(x,y)
                     if selected:
-                        board.select(selected)
+                        board.select(*selected)
 
                 if event.type == pygame.KEYDOWN and selected: #Input value
                     if event.key == pygame.K_1:
