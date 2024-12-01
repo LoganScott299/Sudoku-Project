@@ -1,3 +1,5 @@
+from cell import Cell
+
 #This class represents an entire Sudoku board. A Board object has 81 Cell objects
 class Board:
     def __init__(self, width, height, screen, difficulty):
