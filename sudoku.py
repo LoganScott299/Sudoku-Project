@@ -61,9 +61,9 @@ def main():
 
                 if event.type == pygame.MOUSEBUTTONDOWN: #Select cell
                     x, y = event.pos
-                    row, col = board.click(x,y)
-                    if row and col:
-                        board.select(row, col)
+                    selected = board.click(x,y)
+                    if selected:
+                        board.select(selected)
 
                 if event.type == pygame.KEYDOWN and selected: #Input value
                     if event.key == pygame.K_1:
@@ -89,7 +89,8 @@ def main():
 
             board.draw()
 
-            if row and col:
+            if selected:
+                row,col = selected
                 board.cells[row][col].draw(selected=True)
 
             pygame.display.flip()
