@@ -84,8 +84,10 @@ def main():
                         board.sketch(8)
                     elif event.key == pygame.K_9:
                         board.sketch(9)
-                    elif event.key == pygame.K_BACKSPACE:  # Clear the cell
+                    elif event.key == pygame.K_BACKSPACE:  #Clear the cell
                         board.clear()
+                    elif event.key == pygame.K_RETURN: #Submit guess
+                        board.place_number()
 
             board.draw()
 
