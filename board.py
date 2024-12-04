@@ -9,8 +9,6 @@ class Board:
         self.height = height
         self.screen = screen
         self.difficulty = difficulty
-
-        self.selected_cords = None
         self.selected_cell = None
 
         if difficulty == "easy":
@@ -39,7 +37,7 @@ class Board:
                 self.cells[row][col].draw()
 
         if self.selected_cell:
-            row, col = self.selected_cords
+            row, col = self.selected_cell.row, self.selected_cell.col
             for i in range(9):
                 self.cells[i][col].draw(same_row_or_col=True)
             for j in range(9):
