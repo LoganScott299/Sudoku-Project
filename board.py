@@ -36,8 +36,8 @@ class Board:
                 self.cells[row][col].draw()
 
         for x in [3, 6]:  #Only need lines at the 3rd and 6th positions
-            pygame.draw.line(self.screen, (0, 0, 0), (x * self.width // 9, 0), (x * self.width // 9, self.height), 3)  #Vertical lines
-            pygame.draw.line(self.screen, (0, 0, 0), (0, x * self.height // 9), (self.width, x * self.height // 9), 3)  #Horizontal lines
+            pygame.draw.line(self.screen, (0, 0, 0), (x * self.width // 9, 0), (x * self.width // 9, self.height), 5)  #Vertical lines
+            pygame.draw.line(self.screen, (0, 0, 0), (0, x * self.height // 9), (self.width, x * self.height // 9), 5)  #Horizontal lines
 
     def select(self, row, col): #
         self.selected_cell = self.cells[row][col]
