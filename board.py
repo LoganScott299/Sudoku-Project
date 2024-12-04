@@ -10,6 +10,9 @@ class Board:
         self.screen = screen
         self.difficulty = difficulty
 
+        self.selected_cords = None
+        self.selected_cell = None
+
         if difficulty == "easy":
             removed_cells = 30
         elif difficulty == "medium":
@@ -35,11 +38,20 @@ class Board:
             for col in range(9):
                 self.cells[row][col].draw()
 
+        if self.selected_cell:
+            row, col = self.selected_cords
+            for i in range(9):
+                self.cells[i][col].draw(same_row_or_col=True)
+            for j in range(9):
+                self.cells[row][j].draw(same_row_or_col=True)
+            self.selected_cell.draw(selected=True)
+
         for x in [3, 6]:  #Only need lines at the 3rd and 6th positions
             pygame.draw.line(self.screen, (0, 0, 0), (x * self.width // 9, 0), (x * self.width // 9, self.height), 5)  #Vertical lines
             pygame.draw.line(self.screen, (0, 0, 0), (0, x * self.height // 9), (self.width, x * self.height // 9), 5)  #Horizontal lines
 
-    def select(self, row, col): #
+    def select(self, row, col):
+        self.selected_cords = row, col
         self.selected_cell = self.cells[row][col]
 
     def click(self, x, y):
