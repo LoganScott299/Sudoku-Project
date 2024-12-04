@@ -67,23 +67,23 @@ def main():
 
                 if event.type == pygame.KEYDOWN and selected: #Input value
                     if event.key == pygame.K_1:
-                        board.place_number(1)
+                        board.sketch(1)
                     elif event.key == pygame.K_2:
-                        board.place_number(2)
+                        board.sketch(2)
                     elif event.key == pygame.K_3:
-                        board.place_number(3)
+                        board.sketch(3)
                     elif event.key == pygame.K_4:
-                        board.place_number(4)
+                        board.sketch(4)
                     elif event.key == pygame.K_5:
-                        board.place_number(5)
+                        board.sketch(5)
                     elif event.key == pygame.K_6:
-                        board.place_number(6)
+                        board.sketch(6)
                     elif event.key == pygame.K_7:
-                        board.place_number(7)
+                        board.sketch(7)
                     elif event.key == pygame.K_8:
-                        board.place_number(8)
+                        board.sketch(8)
                     elif event.key == pygame.K_9:
-                        board.place_number(9)
+                        board.sketch(9)
                     elif event.key == pygame.K_BACKSPACE:  # Clear the cell
                         board.clear()
 
