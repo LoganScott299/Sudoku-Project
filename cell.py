@@ -25,11 +25,13 @@ class Cell:
             pygame.draw.rect(self.screen, (255,0,0), (x,y,cell_size, cell_size), 3)
         else: #Thin black border if not selected
             pygame.draw.rect(self.screen, (0, 0, 0), (x, y, cell_size, cell_size), 1)
-        font = pygame.font.SysFont("arial", 32)
+            
+        big_font = pygame.font.SysFont("arial", 32)
+        little_font = pygame.font.SysFont("arial", 16)
+        
         if self.value != 0: #Display value if available
-            value_text = font.render(str(self.value), True, (0,0,0))
-            self.screen.blit(value_text, (x+30, y+30)) #Middle of cell
+            value_display = big_font.render(str(self.value), True, (0,0,0))
+            self.screen.blit(value_display, (x+20, y+15)) #Middle of cell
         elif self.sketched_value != 0: #Display sketched value if available
-            sketched_value_text = font.render(str(self.sketched_value), True, (0,0,0))
-            self.screen.blit(sketched_value_text, (x+10, +10)) #Top left of cell
-
+            sketched_value_display = little_font.render(str(self.sketched_value), True, (128,128,128))
+            self.screen.blit(sketched_value_display, (x+5, y+5)) #Top left of cell
