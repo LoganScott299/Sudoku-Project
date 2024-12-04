@@ -39,7 +39,7 @@ class Board:
             pygame.draw.line(self.screen, (0, 0, 0), (x * self.width // 9, 0), (x * self.width // 9, self.height), 3) #Vertical lines
             pygame.draw.line(self.screen, (0, 0, 0), (0, x * self.height // 9), (self.width, x * self.height // 9), 3) #Horizontal lines
 
-    def select(self, row, col): #
+    def select(self, row, col): 
         self.selected_cell = self.cells[row][col]
 
     def click(self, x, y):
