@@ -35,11 +35,11 @@ class Board:
             for col in range(9):
                 self.cells[row][col].draw()
 
-        for x in [3, 6]: #These lines divide boxes and are bolded. <- Might want to make thicker 
-            pygame.draw.line(self.screen, (0, 0, 0), (x * self.width // 9, 0), (x * self.width // 9, self.height), 3) #Vertical lines
-            pygame.draw.line(self.screen, (0, 0, 0), (0, x * self.height // 9), (self.width, x * self.height // 9), 3) #Horizontal lines
+        for x in [3, 6]:  #Only need lines at the 3rd and 6th positions
+            pygame.draw.line(self.screen, (0, 0, 0), (x * self.width // 9, 0), (x * self.width // 9, self.height), 3)  #Vertical lines
+            pygame.draw.line(self.screen, (0, 0, 0), (0, x * self.height // 9), (self.width, x * self.height // 9), 3)  #Horizontal lines
 
-    def select(self, row, col): 
+    def select(self, row, col): #
         self.selected_cell = self.cells[row][col]
 
     def click(self, x, y):
@@ -48,21 +48,22 @@ class Board:
 
         if row >= 0 and row < 9: #Check if the click is in the board's boundaries
             if col >= 0 and col < 9:
-                if self.cells[row][col].value == 0:
-                    return row, col
+                return row, col
         return None #Return None if the click is outside the board
 
     def clear(self):
-        if self.selected_cell:
+        if self.selected_cell.original_value == 0:
             self.selected_cell.set_cell_value(0)
+            self.selected_cell.set_sketched_value(0)
 
     def sketch(self, value):
-        if self.selected_cell:
+        if self.selected_cell.original_value == 0:
             self.selected_cell.set_sketched_value(value)
 
-    def place_number(self, value):
-        if self.selected_cell:
-            self.selected_cell.set_cell_value(value)
+    def place_number(self):
+        sketched_value = self.selected_cell.sketched_value
+        if self.selected_cell.original_value == 0:
+            self.selected_cell.set_cell_value(sketched_value)
 
     def reset_to_original(self): #Reset board to original state
         for row in self.cells:
@@ -89,4 +90,3 @@ class Board:
                     if not self.sudoku_generator.is_valid(row, col, value):
                         return False
         return True
-
