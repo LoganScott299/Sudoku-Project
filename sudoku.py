@@ -91,14 +91,6 @@ def main():
 
             board.draw()
 
-            if selected:
-                row,col = selected
-                for i in range (9):
-                    board.cells[i][col].draw(same_row_or_col=True)
-                for j in range (9):
-                    board.cells[row][j].draw(same_row_or_col=True)
-                board.cells[row][col].draw(selected=True)
-
             pygame.display.flip()
             clock.tick(60)
 
