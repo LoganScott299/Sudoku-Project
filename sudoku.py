@@ -44,7 +44,7 @@ def main():
                         elif 350 <= clickY <= 400:
                             removed_cells = 50 #Hard
 
-                        if difficulty:
+                        if removed_cells:
                             board = Board(540, 540, screen, removed_cells)
                             running = False
             pygame.display.flip()
