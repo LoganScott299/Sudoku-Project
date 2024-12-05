@@ -18,7 +18,7 @@ def main():
         clock = pygame.time.Clock()
         running = True
 
-        difficulty = None
+        removed_cells = None
         board = None
         selected = None
 
@@ -36,7 +36,7 @@ def main():
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     clickX, clickY = event.pos
-                    if 270 <= clickX <= 470:
+                    if 170 <= clickX <= 370:
                         if 150 <= clickY <= 200:
                             removed_cells = 30 #Easy
                         elif 250 <= clickY <= 300:
@@ -92,7 +92,7 @@ def main():
             board.draw()
 
             pygame.display.flip()
-            clock.tick(60)
+            clock.tick(25)
 
     finally:
         pygame.quit()
