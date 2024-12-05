@@ -38,14 +38,14 @@ def main():
                     clickX, clickY = event.pos
                     if 270 <= clickX <= 470:
                         if 150 <= clickY <= 200:
-                            difficulty = "easy"
+                            removed_cells = 30 #Easy
                         elif 250 <= clickY <= 300:
-                            difficulty = "medium"
+                            removed_cells = 40 #Medium
                         elif 350 <= clickY <= 400:
-                            difficulty = "hard"
+                            removed_cells = 50 #Hard
 
                         if difficulty:
-                            board = Board(540, 540, screen, difficulty)
+                            board = Board(540, 540, screen, removed_cells)
                             running = False
             pygame.display.flip()
             clock.tick(60)

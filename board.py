@@ -4,19 +4,12 @@ import pygame
 
 #This class represents an entire Sudoku board. A Board object has 81 Cell objects
 class Board:
-    def __init__(self, width, height, screen, difficulty):
+    def __init__(self, width, height, screen, removed_cells):
         self.width = width
         self.height = height
         self.screen = screen
-        self.difficulty = difficulty
+        self.removed_cells = removed_cells
         self.selected_cell = None
-
-        if difficulty == "easy":
-            removed_cells = 30
-        elif difficulty == "medium":
-            removed_cells = 40
-        elif difficulty == "hard":
-            removed_cells = 50
 
         self.sudoku_generator = SudokuGenerator(9, removed_cells)
         self.sudoku_generator.fill_values()
