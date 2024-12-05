@@ -59,7 +59,7 @@ class Board:
             self.selected_cell.set_cell_value()
 
     def sketch(self, value):
-        if self.selected_cell:
+        if self.selected_cell and self.selected_cell.value == 0:
             self.selected_cell.set_sketched_value(value)
 
     def place_number(self):
