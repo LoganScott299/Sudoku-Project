@@ -37,7 +37,7 @@ class Board:
                 self.cells[row][j].draw(same_row_or_col=True)
             self.selected_cell.draw(selected=True)
 
-        for x in [3, 6]:  #Only need lines at the 3rd and 6th positions
+        for x in [3, 6]:  #Only need box divider lines at the 3rd and 6th positions
             pygame.draw.line(self.screen, (0, 0, 0), (x * self.width // 9, 0), (x * self.width // 9, self.height), 5)  #Vertical lines
             pygame.draw.line(self.screen, (0, 0, 0), (0, x * self.height // 9), (self.width, x * self.height // 9), 5)  #Horizontal lines
 
