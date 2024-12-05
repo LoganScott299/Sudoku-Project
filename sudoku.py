@@ -91,6 +91,10 @@ def main():
 
             board.draw()
 
+            if selected:
+                row,col = selected
+                board.cells[row][col].draw(selected=True)
+            
             pygame.display.flip()
             clock.tick(25)
 
