@@ -13,14 +13,15 @@ class Board:
 
         self.sudoku_generator = SudokuGenerator(9, removed_cells)
         self.sudoku_generator.fill_values()
+        self.completed_board = self.sudoku_generator.get_board() #Board before cells are removed
         self.sudoku_generator.remove_cells()
-        board = self.sudoku_generator.get_board()
+        player_board = self.sudoku_generator.get_board() #Board after cells are removed
 
         self.cells = [] #9x9 grid of cells.
         for row in range(9):
             row_cells = []
             for col in range(9):
-                cell = Cell(board[row][col], row, col, screen)
+                cell = Cell(player_board[row][col], row, col, screen) #Use player_board to make cells
                 row_cells.append(cell)
             self.cells.append(row_cells)
 
@@ -29,15 +30,15 @@ class Board:
             for col in range(9):
                 self.cells[row][col].draw()
 
-        if self.selected_cell:
+        if self.selected_cell: #Don't run this if no cell is selected
             row, col = self.selected_cell.row, self.selected_cell.col
             for i in range(9):
-                self.cells[i][col].draw(same_row_or_col=True)
+                self.cells[i][col].draw(same_row_or_col=True) #Redraw cells in the same column as selected cell
             for j in range(9):
-                self.cells[row][j].draw(same_row_or_col=True)
-            self.selected_cell.draw(selected=True)
+                self.cells[row][j].draw(same_row_or_col=True) #Redraw cells in the same row as selected cell
+            self.selected_cell.draw(selected=True) #Redraw the selected cell
 
-        for x in [3, 6]:  #Only need box divider lines at the 3rd and 6th positions
+        for x in [3, 6]: #Only need box divider lines at the 3rd and 6th positions
             pygame.draw.line(self.screen, (0, 0, 0), (x * self.width // 9, 0), (x * self.width // 9, self.height), 5)  #Vertical lines
             pygame.draw.line(self.screen, (0, 0, 0), (0, x * self.height // 9), (self.width, x * self.height // 9), 5)  #Horizontal lines
 
@@ -51,19 +52,19 @@ class Board:
 
         if row >= 0 and row < 9: #Check if the click is in the board's boundaries
             if col >= 0 and col < 9:
-                return row, col
+                return row, col #Return the row and col of the click
         return None #Return None if the click is outside the board
 
-    def clear(self):
+    def clear(self): #Reset the cell to 0
         if self.selected_cell.original_value == 0:
             self.selected_cell.set_cell_value(0)
             self.selected_cell.set_sketched_value(0)
 
-    def sketch(self, value):
+    def sketch(self, value): #Set sketch value
         if self.selected_cell.original_value == 0:
             self.selected_cell.set_sketched_value(value)
 
-    def place_number(self):
+    def place_number(self): #Set actual value
         sketched_value = self.selected_cell.sketched_value
         if self.selected_cell.original_value == 0:
             self.selected_cell.set_cell_value(sketched_value)
@@ -73,7 +74,7 @@ class Board:
             for cell in row:
                 cell.value = cell.original_value
 
-    def is_full(self): #Check if board completed
+    def is_full(self): #Check if the board is completed
         for row in self.cells:
             for cell in row:
                 if cell.value == 0:
@@ -88,8 +89,8 @@ class Board:
     def check_board(self):
         for row in range(9):
             for col in range (9):
-                value = self.cells[row][col].value
-                if value != 0:
-                    if not self.sudoku_generator.is_valid(row, col, value):
+                player_value = self.cells[row][col].value
+                if player_value != 0:
+                    if player_value != self.completed_board[row][col]: #Check player_board against completed_board
                         return False
         return True
