@@ -13,7 +13,10 @@ class Board:
 
         self.sudoku_generator = SudokuGenerator(9, removed_cells)
         self.sudoku_generator.fill_values()
-        self.completed_board = self.sudoku_generator.get_board() #Board before cells are removed
+        self.completed_board = [[],[],[],[],[],[],[],[],[]]
+        for row in range(9):
+            for col in range(9):
+                self.completed_board[row].append(self.sudoku_generator.get_board()[row][col])
         self.sudoku_generator.remove_cells()
         player_board = self.sudoku_generator.get_board() #Board after cells are removed
 
@@ -89,7 +92,7 @@ class Board:
 
     def check_board(self):
         for row in range(9):
-            for col in range (9):
+            for col in range(9):
                 player_value = self.cells[row][col].value
                 if player_value != 0:
                     if player_value != self.completed_board[row][col]: #Check player_board against completed_board
