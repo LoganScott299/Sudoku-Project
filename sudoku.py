@@ -128,6 +128,35 @@ def main():
                         board.clear()
                     elif event.key == pygame.K_RETURN: #Submit guess
                         board.place_number()
+                if board.is_full():
+                    if board.check_board():
+                        while running:
+                            screen.fill((255, 255, 255))
+                            draw_button(screen, 170, 150, "Game Won!", button_color)
+                            draw_small_button(screen, 230, 300, "   Exit", button_color)
+                            pygame.display.flip()
+                            for event in pygame.event.get():  # Event listener
+                                if event.type == pygame.QUIT:  # Quit button
+                                    running = False
+                                if event.type == pygame.MOUSEBUTTONDOWN:  # Select cell
+                                    x, y = event.pos
+                                    if 300 <= y <= 340:
+                                        if 230 <= x <= 310:
+                                            exit()
+                    if not board.check_board():
+                        while running:
+                            screen.fill((255, 255, 255))
+                            draw_button(screen, 170, 150, "Game Over :(", button_color)
+                            draw_small_button(screen, 230, 300, "Restart", button_color)
+                            pygame.display.flip()
+                            for event in pygame.event.get():  # Event listener
+                                if event.type == pygame.QUIT:  # Quit button
+                                    running = False
+                                if event.type == pygame.MOUSEBUTTONDOWN:  # Select cell
+                                    x, y = event.pos
+                                    if 300 <= y <= 340:
+                                        if 230 <= x <= 310:
+                                            main()
 
             board.draw()
             #Reset, Restart, Exit Buttons
