@@ -19,7 +19,7 @@ def draw_small_button(screen, x, y, text, color):
 
 def main():
     try:
-        screen = pygame.display.set_mode((540, 540)) #540x540 Screen
+        screen = pygame.display.set_mode((540, 600)) #540x540 Screen
         pygame.display.set_caption("Sudoku")
         clock = pygame.time.Clock()
         running = True
@@ -61,29 +61,23 @@ def main():
         while running and board:
             screen.fill((255,255,255)) #White background
 
-            draw_small_button(screen, 50, 550, " Reset", button_color)
-            draw_small_button(screen, 230, 550, "Restart", button_color)
-            draw_small_button(screen, 410, 550, "   Exit", button_color)
-            
             for event in pygame.event.get(): #Event listener
                 if event.type == pygame.QUIT: #Quit button
                     running = False
 
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                    clickX, clickY = event.pos
-                    if 550 <= clickY <= 590:
-                        if 50 <= clickX <= 130:
-                            board.reset_to_original()
-                        elif 230 <= clickX <= 310:
-                            main()
-                        elif 410 <= clickX <= 490:
-                            exit()
-                
                 if event.type == pygame.MOUSEBUTTONDOWN: #Select cell
                     x, y = event.pos
-                    selected = board.click(x,y)
-                    if selected:
-                        board.select(*selected)
+                    if 550 <= y <= 590:
+                        if 50 <= x <= 130:
+                            board.reset_to_original()
+                        elif 230 <= x <= 310:
+                            main()
+                        elif 410 <= x <= 490:
+                            exit()
+                    else:
+                        selected = board.click(x,y)
+                        if selected:
+                            board.select(*selected)
 
                 if event.type == pygame.KEYDOWN and selected:
                     if event.key == pygame.K_UP:
@@ -110,7 +104,7 @@ def main():
                             selected = (grid_list[0], grid_list[1] - 1)
                         if selected:
                             board.select(*selected)
-                
+
                 if event.type == pygame.KEYDOWN and selected: #Input value
                     if event.key == pygame.K_1:
                         board.sketch(1)
@@ -136,11 +130,11 @@ def main():
                         board.place_number()
 
             board.draw()
+            #Reset, Restart, Exit Buttons
+            draw_small_button(screen, 50, 550, " Reset", button_color)
+            draw_small_button(screen, 230, 550, "Restart", button_color)
+            draw_small_button(screen, 410, 550, "   Exit", button_color)
 
-            if selected:
-                row,col = selected
-                board.cells[row][col].draw(selected=True)
-            
             pygame.display.flip()
             clock.tick(25)
 
