@@ -11,6 +11,12 @@ def draw_button(screen, x, y, text, color):
     pygame.draw.rect(screen, color, (x,y,200,50))
     screen.blit(button_text, (x + (200 - button_text.get_width()) // 2, y + (50 - button_text.get_height()) // 2))
 
+def draw_small_button(screen, x, y, text, color):
+    button_font = pygame.font.SysFont("arial", 22)
+    button_text = button_font.render(text, True, (255,255,255))
+    pygame.draw.rect(screen, color, (x,y,80,40))
+    screen.blit(button_text, (x + 10, y + 6))
+
 def main():
     try:
         screen = pygame.display.set_mode((540, 540)) #540x540 Screen
@@ -55,10 +61,24 @@ def main():
         while running and board:
             screen.fill((255,255,255)) #White background
 
+            draw_small_button(screen, 50, 550, " Reset", button_color)
+            draw_small_button(screen, 230, 550, "Restart", button_color)
+            draw_small_button(screen, 410, 550, "   Exit", button_color)
+            
             for event in pygame.event.get(): #Event listener
                 if event.type == pygame.QUIT: #Quit button
                     running = False
 
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                    clickX, clickY = event.pos
+                    if 550 <= clickY <= 590:
+                        if 50 <= clickX <= 130:
+                            board.reset_to_original()
+                        elif 230 <= clickX <= 310:
+                            main()
+                        elif 410 <= clickX <= 490:
+                            exit()
+                
                 if event.type == pygame.MOUSEBUTTONDOWN: #Select cell
                     x, y = event.pos
                     selected = board.click(x,y)
