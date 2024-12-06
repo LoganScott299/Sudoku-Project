@@ -88,8 +88,8 @@ class Board:
                 cell.set_cell_value(cell.sketched_value)
 
     def check_board(self):
-        for row in range(9):
-            for col in range (9):
+        for row in range(8):
+            for col in range (8):
                 player_value = self.cells[row][col].value
                 if player_value != 0:
                     if player_value != self.completed_board[row][col]: #Check player_board against completed_board
