@@ -65,6 +65,32 @@ def main():
                     if selected:
                         board.select(*selected)
 
+                if event.type == pygame.KEYDOWN and selected:
+                    if event.key == pygame.K_UP:
+                        grid_list = list(selected)
+                        if grid_list[0] != 0:
+                            selected = (grid_list[0] - 1, grid_list[1])
+                        if selected:
+                            board.select(*selected)
+                    if event.key == pygame.K_DOWN:
+                        grid_list = list(selected)
+                        if grid_list[0] != 8:
+                            selected = (grid_list[0] + 1, grid_list[1])
+                        if selected:
+                            board.select(*selected)
+                    if event.key == pygame.K_RIGHT:
+                        grid_list = list(selected)
+                        if grid_list[1] != 8:
+                            selected = (grid_list[0], grid_list[1] + 1)
+                        if selected:
+                            board.select(*selected)
+                    if event.key == pygame.K_LEFT:
+                        grid_list = list(selected)
+                        if grid_list[1] != 0:
+                            selected = (grid_list[0], grid_list[1] - 1)
+                        if selected:
+                            board.select(*selected)
+                
                 if event.type == pygame.KEYDOWN and selected: #Input value
                     if event.key == pygame.K_1:
                         board.sketch(1)
