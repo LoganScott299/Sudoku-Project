@@ -64,7 +64,7 @@ class Board:
 
     def place_number(self):
         if self.selected_cell:
-            if self.selected_cell.value == 0:
+            if self.selected_cell.value == 0 and self.selected_cell.sketched_value != None:
                 self.selected_cell.set_cell_value()
 
         def reset_to_original(self): #Reset board to original state
