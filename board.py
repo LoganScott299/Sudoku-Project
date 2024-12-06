@@ -67,10 +67,11 @@ class Board:
             if self.selected_cell.value == 0:
                 self.selected_cell.set_cell_value()
 
-    def reset_to_original(self): #Reset board to original state
+        def reset_to_original(self): #Reset board to original state
         for row in self.cells:
             for cell in row:
                 cell.value = cell.original_value
+                cell.sketched_value = 0
 
     def is_full(self): #Check if board completed
         for row in self.cells:
