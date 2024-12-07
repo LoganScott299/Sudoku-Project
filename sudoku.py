@@ -7,6 +7,14 @@ button_color = (107, 2, 56)
 
 sudoku_background = pygame.image.load('sudoku.jpg')
 
+def draw_title(screen, x, y, text, title_color, outline_color):
+    button_font = pygame.font.SysFont("comicsans", 64)
+    button_text = button_font.render(text, True, title_color)
+    button_outline_font = pygame.font.SysFont("comicsans", 65)
+    button_outline_text = button_outline_font.render(text, True, outline_color)
+    screen.blit(button_outline_text, (x + (200 - button_outline_text.get_width()) // 2, y + (50 - button_outline_text.get_height()) // 2))
+    screen.blit(button_text, (x + (200 - button_text.get_width()) // 2, y + (50 - button_text.get_height()) // 2))
+
 def draw_button(screen, x, y, text, color):
     button_font = pygame.font.SysFont("arial", 32)
     button_text = button_font.render(text, True, (255,255,255))
@@ -34,6 +42,7 @@ def main():
         while running and not board:
             screen.blit(sudoku_background, (0,0)) #Sudoku background
             #Easy, Medium, Hard Buttons
+            draw_title(screen, 170, 50, "Play Sudoku", button_color, (0,0,0))
             draw_button(screen, 170, 150, "Easy", button_color)
             draw_button(screen, 170, 250, "Medium", button_color)
             draw_button(screen, 170, 350, "Hard", button_color)
