@@ -10,20 +10,22 @@ class Board:
         self.screen = screen
         self.selected_cell = None
 
-        self.sudoku_generator = SudokuGenerator(9, removed_cells)
+        self.sudoku_generator = SudokuGenerator(9, removed_cells) 
         self.sudoku_generator.fill_values()
-        self.completed_board = [[],[],[],[],[],[],[],[],[]]
+        
+        self.completed_board = [[],[],[],[],[],[],[],[],[]] #This will be used to check if the soluton is right.
         for row in range(9):
             for col in range(9):
-                self.completed_board[row].append(self.sudoku_generator.get_board()[row][col])
+                self.completed_board[row].append(self.sudoku_generator.get_board()[row][col]) #Append completed_board before cells are removed. 
+                
         self.sudoku_generator.remove_cells()
-        player_board = self.sudoku_generator.get_board() #Board after cells are removed
-
+        
+        player_board = self.sudoku_generator.get_board() #Assign the player's board after cells are removed
         self.cells = [] #9x9 grid of cells.
         for row in range(9):
             row_cells = []
             for col in range(9):
-                cell = Cell(player_board[row][col], row, col, screen) #Use player_board to make cells
+                cell = Cell(player_board[row][col], row, col, screen) #Create a cell for each value in the player board. 
                 row_cells.append(cell)
             self.cells.append(row_cells)
 
@@ -44,11 +46,11 @@ class Board:
             pygame.draw.line(self.screen, (0, 0, 0), (x * self.width // 9, 0), (x * self.width // 9, self.height), 5)  #Vertical lines
             pygame.draw.line(self.screen, (0, 0, 0), (0, x * self.height // 9), (self.width, x * self.height // 9), 5)  #Horizontal lines
 
-    def select(self, row, col):
+    def select(self, row, col): #Select a cell
         self.selected_cords = row, col
         self.selected_cell = self.cells[row][col]
 
-    def click(self, x, y):
+    def click(self, x, y): #Return the row and column of a click
         row = y // (self.height // 9)
         col = x // (self.width // 9)
 
@@ -89,11 +91,11 @@ class Board:
             for cell in row:
                 cell.set_cell_value(cell.sketched_value)
 
-    def check_board(self):
+    def check_board(self): #Check the player's board against the completed board
         for row in range(9):
             for col in range(9):
                 player_value = self.cells[row][col].value
                 if player_value != 0:
-                    if player_value != self.completed_board[row][col]: #Check player_board against completed_board
+                    if player_value != self.completed_board[row][col]: 
                         return False
         return True
