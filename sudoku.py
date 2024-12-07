@@ -5,16 +5,18 @@ pygame.init()
 
 button_color = (107, 2, 56)
 
+sudoku_background = pygame.image.load('sudoku.jpg')
+
 def draw_button(screen, x, y, text, color):
     button_font = pygame.font.SysFont("arial", 32)
     button_text = button_font.render(text, True, (255,255,255))
-    pygame.draw.rect(screen, color, (x,y,200,50))
+    pygame.draw.rect(screen, color, (x,y,200,50),border_radius = 15)
     screen.blit(button_text, (x + (200 - button_text.get_width()) // 2, y + (50 - button_text.get_height()) // 2))
 
 def draw_small_button(screen, x, y, text, color):
     button_font = pygame.font.SysFont("arial", 22)
     button_text = button_font.render(text, True, (255,255,255))
-    pygame.draw.rect(screen, color, (x,y,80,40))
+    pygame.draw.rect(screen, color, (x,y,80,40), border_radius = 15)
     screen.blit(button_text, (x + 10, y + 6))
 
 def main():
@@ -30,7 +32,7 @@ def main():
 
         #Game loop for menu
         while running and not board:
-            screen.fill((255, 255, 255))  #White background
+            screen.blit(sudoku_background, (0,0)) #Sudoku background
             #Easy, Medium, Hard Buttons
             draw_button(screen, 170, 150, "Easy", button_color)
             draw_button(screen, 170, 250, "Medium", button_color)
@@ -131,7 +133,7 @@ def main():
                 if board.is_full():
                     if board.check_board():
                         while running:
-                            screen.fill((255, 255, 255))
+                            screen.blit(sudoku_background, (0,0)) #Sudoku background
                             draw_button(screen, 170, 150, "Game Won!", button_color)
                             draw_small_button(screen, 230, 300, "   Exit", button_color)
                             pygame.display.flip()
