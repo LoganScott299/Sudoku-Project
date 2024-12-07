@@ -19,7 +19,7 @@ def draw_small_button(screen, x, y, text, color):
 
 def main():
     try:
-        screen = pygame.display.set_mode((540, 600)) #540x540 Screen
+        screen = pygame.display.set_mode((540, 600)) #540x600 Screen
         pygame.display.set_caption("Sudoku")
         clock = pygame.time.Clock()
         running = True
