@@ -41,11 +41,14 @@ def main():
         #Game loop for menu
         while running and not board:
             screen.blit(sudoku_background, (0,0)) #Sudoku background
+            
+            #Title
+            draw_title(screen, 170, 70, "Play Sudoku", button_color, (0,0,0))
+            
             #Easy, Medium, Hard Buttons
-            draw_title(screen, 170, 50, "Play Sudoku", button_color, (0,0,0))
-            draw_button(screen, 170, 150, "Easy", button_color)
-            draw_button(screen, 170, 250, "Medium", button_color)
-            draw_button(screen, 170, 350, "Hard", button_color)
+            draw_button(screen, 170, 170, "Easy", button_color)
+            draw_button(screen, 170, 270, "Medium", button_color)
+            draw_button(screen, 170, 370, "Hard", button_color)
 
             for event in pygame.event.get(): #Event listener
                 if event.type == pygame.QUIT: #Quit button
