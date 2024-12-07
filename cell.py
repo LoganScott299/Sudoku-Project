@@ -33,7 +33,7 @@ class Cell:
 
         #These are the fonts for text inside the cells
         big_font = pygame.font.SysFont("DIN", 32)
-        little_font = pygame.font.SysFont("DIN", 16)
+        little_font = pygame.font.SysFont("DIN", 20)
 
         if self.value != 0:  #Display the cell's value if it is available
             value_display = big_font.render(str(self.value), True, (0, 0, 0))
