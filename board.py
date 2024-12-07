@@ -8,7 +8,6 @@ class Board:
         self.width = width
         self.height = height
         self.screen = screen
-        self.removed_cells = removed_cells
         self.selected_cell = None
 
         self.sudoku_generator = SudokuGenerator(9, removed_cells)
