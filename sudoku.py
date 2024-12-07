@@ -57,11 +57,11 @@ def main():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     clickX, clickY = event.pos
                     if 170 <= clickX <= 370:
-                        if 150 <= clickY <= 200:
+                        if 170 <= clickY <= 220:
                             removed_cells = 30 #Easy
-                        elif 250 <= clickY <= 300:
+                        elif 270 <= clickY <= 320:
                             removed_cells = 40 #Medium
-                        elif 350 <= clickY <= 400:
+                        elif 370 <= clickY <= 420:
                             removed_cells = 50 #Hard
 
                         if removed_cells:
