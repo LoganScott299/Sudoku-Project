@@ -8,15 +8,16 @@ button_color = (107, 2, 56)
 sudoku_background = pygame.image.load('sudoku.jpg')
 
 def draw_title(screen, x, y, text, title_color, outline_color):
-    button_font = pygame.font.SysFont("comicsans", 64)
+    font = "impact, arial"
+    button_font = pygame.font.SysFont(font, 64)
     button_text = button_font.render(text, True, title_color)
-    button_outline_font = pygame.font.SysFont("comicsans", 65)
+    button_outline_font = pygame.font.SysFont(font, 65)
     button_outline_text = button_outline_font.render(text, True, outline_color)
     screen.blit(button_outline_text, (x + (200 - button_outline_text.get_width()) // 2, y + (50 - button_outline_text.get_height()) // 2))
     screen.blit(button_text, (x + (200 - button_text.get_width()) // 2, y + (50 - button_text.get_height()) // 2))
 
 def draw_button(screen, x, y, text, color):
-    button_font = pygame.font.SysFont("arial", 32)
+    button_font = pygame.font.SysFont("verdana, arial", 32)
     button_text = button_font.render(text, True, (255,255,255))
     pygame.draw.rect(screen, color, (x,y,200,50),border_radius = 15)
     screen.blit(button_text, (x + (200 - button_text.get_width()) // 2, y + (50 - button_text.get_height()) // 2))
